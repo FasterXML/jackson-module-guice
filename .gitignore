@@ -1,4 +1,5 @@
 *.class
+*~
 
 # IntelliJ Files
 .idea
@@ -9,3 +10,4 @@
 *.jar
 *.war
 *.ear
+/target

@@ -1,7 +1,8 @@
-package com.fasterxml.jackson.databind.introspect;
+package com.fasterxml.jackson.module.guice;
 
 import com.fasterxml.jackson.databind.Module;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.introspect.AnnotationIntrospectorPair;
 import com.google.inject.Binder;
 import com.google.inject.Inject;
 import com.google.inject.Injector;
