@@ -6,6 +6,11 @@
 *.iml
 *.ipl
 
+# Eclipse
+.classpath
+.project
+.settings
+
 # Package Files #
 *.jar
 *.war
