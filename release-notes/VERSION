@@ -1,8 +1,12 @@
 Project: jackson-module-guice
-Version: 2.3.0 (10-Dec-2013)
+Version: 2.3.1 (28-Dec-2013)
 
-The very first published version!
+No functional changes.
 
 ------------------------------------------------------------------------
 === History: ===
 ------------------------------------------------------------------------
+
+2.3.0 (10-Dec-2013)
+
+The very first published version!
