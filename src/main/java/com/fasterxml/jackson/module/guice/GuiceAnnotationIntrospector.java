@@ -7,6 +7,7 @@ import com.google.inject.BindingAnnotation;
 import com.google.inject.Key;
 
 import java.lang.annotation.Annotation;
+import javax.inject.Qualifier;
 
 public class GuiceAnnotationIntrospector extends NopAnnotationIntrospector
 {
@@ -21,7 +22,9 @@ public class GuiceAnnotationIntrospector extends NopAnnotationIntrospector
         }
         Annotation guiceAnnotation = null;
         for (Annotation annotation : m.annotations()) {
-            if (annotation.annotationType().isAnnotationPresent(BindingAnnotation.class)) {
+        	// Check on guice (BindingAnnotation) & javax (Qualifier) based injections      	
+            if (annotation.annotationType().isAnnotationPresent(BindingAnnotation.class) ||
+            	annotation.annotationType().isAnnotationPresent(Qualifier.class)) {
                 guiceAnnotation = annotation;
                 break;
             }

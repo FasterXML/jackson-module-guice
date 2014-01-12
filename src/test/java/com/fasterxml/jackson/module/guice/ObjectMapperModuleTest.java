@@ -38,8 +38,11 @@ public class ObjectMapperModuleTest
           public void configure(Binder binder)
           {
             binder.bind(Integer.class).toInstance(1);
+            // guice based named injection
             binder.bind(Integer.class).annotatedWith(Names.named("two")).toInstance(2);
             binder.bind(Integer.class).annotatedWith(Ann.class).toInstance(3);
+            // javax based named injection
+            binder.bind(Integer.class).annotatedWith(Names.named("five")).toInstance(5);
           }
         }
     );
@@ -133,7 +136,7 @@ public class ObjectMapperModuleTest
     private int one;
 
     @JacksonInject
-    @Named("two")
+    @com.google.inject.name.Named("two")
     private int two;
 
     @JacksonInject
@@ -142,6 +145,10 @@ public class ObjectMapperModuleTest
 
     @JsonProperty
     private int four;
+    
+    @JacksonInject
+    @javax.inject.Named("five")
+    private int five;
 
     public boolean verify()
     {
@@ -149,6 +156,7 @@ public class ObjectMapperModuleTest
       Assert.assertEquals(2, two);
       Assert.assertEquals(3, three);
       Assert.assertEquals(4, four);
+      Assert.assertEquals(5, five);
       return true;
     }
   }
