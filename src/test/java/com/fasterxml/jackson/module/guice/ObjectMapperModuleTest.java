@@ -43,6 +43,10 @@ public class ObjectMapperModuleTest
                         binder.bind(Integer.class).annotatedWith(Ann.class).toInstance(3);
                         // javax based named injection
                         binder.bind(Integer.class).annotatedWith(Names.named("five")).toInstance(5);
+                        // guice based method injection
+                        binder.bind(Integer.class).annotatedWith(Names.named("six")).toInstance(6);
+                        // javax based method injection
+                        binder.bind(Integer.class).annotatedWith(Names.named("seven")).toInstance(7);
                     }
                 }
         );
@@ -150,6 +154,22 @@ public class ObjectMapperModuleTest
         @javax.inject.Named("five")
         private int five;
 
+        // Those will be injected by methods
+        private int six;
+        private int seven;
+
+        @JacksonInject
+        private void injectSix(@com.google.inject.name.Named("six") int six)
+        {
+            this.six = six;
+        }
+
+        @JacksonInject
+        private void injectSeven(@javax.inject.Named("seven") int seven)
+        {
+            this.seven = seven;
+        }
+
         public boolean verify()
         {
             Assert.assertEquals(1, one);
@@ -157,8 +177,11 @@ public class ObjectMapperModuleTest
             Assert.assertEquals(3, three);
             Assert.assertEquals(4, four);
             Assert.assertEquals(5, five);
+            Assert.assertEquals(6, six);
+            Assert.assertEquals(7, seven);
             return true;
         }
+
     }
 
     private static class IntegerAsBase16Module extends SimpleModule
