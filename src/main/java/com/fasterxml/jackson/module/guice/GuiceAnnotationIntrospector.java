@@ -17,19 +17,24 @@ public class GuiceAnnotationIntrospector extends NopAnnotationIntrospector
     public Object findInjectableValueId(AnnotatedMember m)
     {
         // Is this needed?
-        if (m.getAnnotation(JacksonInject.class) == null) {
+        if (m.getAnnotation(JacksonInject.class) == null)
+        {
             return null;
         }
+
         Annotation guiceAnnotation = null;
-        for (Annotation annotation : m.annotations()) {
-        	// Check on guice (BindingAnnotation) & javax (Qualifier) based injections      	
+        for (Annotation annotation : m.annotations())
+        {
+            // Check on guice (BindingAnnotation) & javax (Qualifier) based injections
             if (annotation.annotationType().isAnnotationPresent(BindingAnnotation.class) ||
-            	annotation.annotationType().isAnnotationPresent(Qualifier.class)) {
+                annotation.annotationType().isAnnotationPresent(Qualifier.class))
+            {
                 guiceAnnotation = annotation;
                 break;
             }
         }
-        if (guiceAnnotation == null) {
+        if (guiceAnnotation == null)
+        {
             return Key.get(m.getGenericType());
         }
         return Key.get(m.getGenericType(), guiceAnnotation);
