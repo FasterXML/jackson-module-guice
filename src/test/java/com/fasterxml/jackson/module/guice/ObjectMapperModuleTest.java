@@ -47,6 +47,9 @@ public class ObjectMapperModuleTest
                         binder.bind(Integer.class).annotatedWith(Names.named("six")).toInstance(6);
                         // javax based method injection
                         binder.bind(Integer.class).annotatedWith(Names.named("seven")).toInstance(7);
+                        // test other method injections (need different keys, so use Long
+                        binder.bind(Long.class).annotatedWith(Ann.class).toInstance(8L);
+                        binder.bind(Long.class).toInstance(9L);
                     }
                 }
         );
@@ -157,6 +160,8 @@ public class ObjectMapperModuleTest
         // Those will be injected by methods
         private int six;
         private int seven;
+        private long eight;
+        private long nine;
 
         @JacksonInject
         private void injectSix(@com.google.inject.name.Named("six") int six)
@@ -170,6 +175,18 @@ public class ObjectMapperModuleTest
             this.seven = seven;
         }
 
+        @JacksonInject
+        private void injectEight(@Ann long eight)
+        {
+            this.eight = eight;
+        }
+
+        @JacksonInject
+        private void injectNine(long nine)
+        {
+            this.nine = nine;
+        }
+
         public boolean verify()
         {
             Assert.assertEquals(1, one);
@@ -179,6 +196,8 @@ public class ObjectMapperModuleTest
             Assert.assertEquals(5, five);
             Assert.assertEquals(6, six);
             Assert.assertEquals(7, seven);
+            Assert.assertEquals(8, eight);
+            Assert.assertEquals(9, nine);
             return true;
         }
 
