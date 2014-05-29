@@ -5,9 +5,9 @@ import com.fasterxml.jackson.databind.introspect.*;
 import com.google.inject.BindingAnnotation;
 import com.google.inject.Key;
 
+import javax.inject.Qualifier;
 import java.lang.annotation.Annotation;
 import java.util.Arrays;
-import javax.inject.Qualifier;
 
 public class GuiceAnnotationIntrospector extends NopAnnotationIntrospector
 {
@@ -16,12 +16,20 @@ public class GuiceAnnotationIntrospector extends NopAnnotationIntrospector
     @Override
     public Object findInjectableValueId(AnnotatedMember m)
     {
-        // Is this needed?
-        if (m.getAnnotation(JacksonInject.class) == null)
+       /*
+        * We check on three kinds of annotations: @JacksonInject for types
+        * that were actually created for Jackson, and @Inject (both Guice's
+        * and javax.inject) for types that (for example) extend already
+        * annotated objects.
+        *
+        * Postel's law: http://en.wikipedia.org/wiki/Robustness_principle
+        */
+        if ((m.getAnnotation(JacksonInject.class) == null) &&
+            (m.getAnnotation(javax.inject.Inject.class) == null) &&
+            (m.getAnnotation(com.google.inject.Inject.class) == null))
         {
             return null;
         }
-
 
         final AnnotatedMember guiceMember;
         final Annotation guiceAnnotation;
