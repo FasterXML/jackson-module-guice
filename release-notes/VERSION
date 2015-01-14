@@ -4,9 +4,8 @@ Project: jackson-module-guice
 = Releases
 ------------------------------------------------------------------------
 
+2.4.5 (13-Jan-2015)
 2.4.4 (24-Nov-2014)
-
-No changes since 2.3.
 
 2.4.3 (03-Oct-2014)
 2.4.2 (14-Aug-2014)
@@ -17,7 +16,7 @@ No changes since 2.3.
 2.3.2 (01-Mar-2014)
 2.3.1 (28-Dec-2013)
 
-No changes.
+No changes since 2.3.0
 
 2.3.0 (10-Dec-2013)
 
