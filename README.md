@@ -1,6 +1,12 @@
 jackson-module-guice
 ====================
 
+## Status
+
+[![Build Status](https://travis-ci.org/FasterXML/jackson-module-guice.svg)](https://travis-ci.org/FasterXML/jackson-module-guice)
+
+## Documentation
+
 This extension allows Jackson to delegate ObjectMapper creation and value injection to Guice when handling data bindings.
 Using the ObjectMapperModule you can register Jackson data binding modules like so:
 
