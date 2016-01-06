@@ -25,8 +25,8 @@
     </scm>
 
     <properties>
-        <jackson.annotation.version>2.7.0-rc2</jackson.annotation.version>
-        <jackson.core.version>2.7.0-rc3-SNAPSHOT</jackson.core.version>
+        <jackson.annotation.version>2.7.0-rc3</jackson.annotation.version>
+        <jackson.core.version>2.7.0-rc3</jackson.core.version>
         <!-- Generate PackageVersion.java into this directory. -->
         <packageVersion.dir>com/fasterxml/jackson/module/guice</packageVersion.dir>
         <packageVersion.package>${project.groupId}.guice</packageVersion.package>
