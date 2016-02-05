@@ -1,4 +1,4 @@
-**NOTE**: This module is being moved under [../../../jackson-base-modules] during Jackson 2.7 version.
+**NOTE**: This module is being moved under [jackson-modules-base](../../../jackson-modules-base) during Jackson 2.7.
 
 -----
 
